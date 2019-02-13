@@ -27,14 +27,26 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
 
-    console.log(" SW-FETCH: ", event.request.url);
+    //console.log(" SW-FETCH: ", event.request.url);
 
-    if (event.request.url.includes('https://reqres.in')) {
+    /*if (event.request.url.includes('https://reqres.in')) {
 
-        const resp = new Response(`{ ok: false, mensaje: 'jajaja' }`);
-        let r = JSON.stringify({ ok: false, mensaje: 'jajaja' });
-
+        const resp = new Response(`{ ok: false, mensaje: 'jajaja' }`)
         event.respondWith(resp);
-    }
+    }*/
+
+});
+
+self.addEventListener('sync', event => {
+
+    console.log('Tenemos conexión!');
+    console.log(event);
+    console.log(event.tag);
+
+});
+
+self.addEventListener('push', event => {
+
+    console.log('push notification');
 
 });
