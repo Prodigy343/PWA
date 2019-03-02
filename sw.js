@@ -1,21 +1,16 @@
-self.addEventListener('fetch', event => {
+self.addEventListener('install', event => {
 
-    const offlineHTML = fetch('pages/offline.html')
-        .then(resp => resp.text());
-
-    const offlineResp = new Response('pages/offline.html', {
-        headers: {
-            'Content': 'text/html'
-        }
-    });
-
-    const resp = fetch(event.request)
-        .catch(() => {
-            return offlineResp;
+    const cachePromise = caches.open('cache-1')
+        .then(cache => {
+            return cache.addAll([
+                '/index.html',
+                '/css/style.css',
+                '/img/main.jpg',
+                'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+                '/js/app.js'
+            ]);
         });
 
-
-
-    event.respondWith(resp);
+    event.waitUntil(cachePromise);
 
 });

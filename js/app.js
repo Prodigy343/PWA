@@ -3,6 +3,7 @@ if (navigator.serviceWorker) {
 
 }
 
+/*
 if (window.caches) {
     caches.open('cache-v1.0')
         .then(cache => {
@@ -23,13 +24,14 @@ if (window.caches) {
                 cache.put('index.html', new Response('hola mundo'))
             });
 
-            /*cache.match('/index.html')
-                .then(res => {
+            cache.match('/index.html')
+            .then(res => {
 
-                });*/
+            });
 
             //printing the key names of the cache files at the cache storage
             caches.keys().then(console.log);
 
         });
 }
+*/
